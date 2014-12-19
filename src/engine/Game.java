@@ -15,17 +15,23 @@ public class Game {
     public static String name = "Opponent" ;
     public static int basedmg;
     public static int opHealth,playerHealth;
+    public static int xpTreshold = 50;
 
     public Game() {
-        loadAction();
         generateOpponent();
+        loadAction();
         GameGUI gui = new GameGUI(player);
+    }
+
+    public static void newAction() {
+        player.initPlayer();
     }
 
     public static void attackAction() {
         playerHealth = playerHealth-basedmg;
         opHealth = opHealth -10;
-        player.setXP(player.getXP()+2);
+        player.setXp(player.getXp() + 2);
+        checkAction();
     }
 
     public static void saveAction() {
@@ -34,6 +40,20 @@ public class Game {
 
     public static void loadAction() {
         player = loadPlayer();
+    }
+
+    public static void levelAction() {
+        player.setLevel(player.getLevel()+1);
+        player.setXp(0);
+    }
+
+    public static void checkAction() {
+        if (player.getXp()>=(player.getLevel()*xpTreshold))
+            levelAction();
+    }
+
+    public static void newOpAction() {
+        generateOpponent();
     }
 
     private static void generateOpponent() {

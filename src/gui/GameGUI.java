@@ -22,6 +22,8 @@ public class GameGUI extends JFrame {
     private JLabel opHealthLabel;
     private JButton newButton;
     private JButton exitButton;
+    private JButton restButton;
+    private JButton newOpButton;
 
 
     public GameGUI(final Player player) {
@@ -29,10 +31,26 @@ public class GameGUI extends JFrame {
         setContentPane(panel);
         reloadContent(player);
 
+        newButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Game.newAction();
+                reloadContent(player);
+            }
+        });
+
         attackButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Game.attackAction();
+                reloadContent(player);
+            }
+        });
+
+        newOpButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Game.newOpAction();
                 reloadContent(player);
             }
         });
@@ -45,8 +63,6 @@ public class GameGUI extends JFrame {
             }
         });
 
-
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setVisible(true);
@@ -54,8 +70,8 @@ public class GameGUI extends JFrame {
 
     private void reloadContent(Player player) {
         nameLabel.setText(player.getName());
-        levelLabel.setText(Integer.toString(player.getStats()[0]));
-        xpLabel.setText(Integer.toString(player.getXP()));
+        levelLabel.setText(Integer.toString(player.getLevel()));
+        xpLabel.setText(Integer.toString(player.getXp()));
         healthLabel.setText(Integer.toString(Game.playerHealth));
 
         opNameLabel.setText(Game.name);
