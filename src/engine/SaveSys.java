@@ -2,16 +2,15 @@ package engine;
 
 import objects.Player;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
+import java.util.ArrayList;
 
 /**
  * Created by Marko on 19.12.2014.
  */
 public class SaveSys {
     static final String PATH="C:\\Users\\Marko\\Documents\\StreetFighter/player.sav";
+    static final String LOG_PATH="C:\\Users\\Marko\\Documents\\StreetFighter/log.txt";
 
     public static void savePlayer(Player player) {
         try {
@@ -38,9 +37,30 @@ public class SaveSys {
             System.out.println("[Sys] Player load completed successfully!");
             return player;
         } catch (Exception e) {
-            System.out.println("[Sys] Player save interrupted by error: ");
+            System.out.println("[Sys] Player load interrupted by error: ");
             e.printStackTrace();
-            return null;
+            player = new Player();
+            return player;
+        }
+    }
+
+    public static void saveLog(ArrayList<String> log) {
+        try {
+            System.out.println("[Sys] Log append in progress..");
+            File file = new File(LOG_PATH);
+            if(!file.exists())
+                file.createNewFile();
+            FileWriter fw = new FileWriter(file.getAbsoluteFile(),true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write("\n---");
+            for (String line : log) {
+                bw.write("\n"+line);
+            }
+            bw.close();
+            System.out.println("[Sys] Log append completed.");
+        } catch (Exception e) {
+            System.out.println("[Sys] Log append interrupted: ");
+            e.printStackTrace();
         }
     }
 }

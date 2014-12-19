@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class Player implements Serializable{
     String name;
-    int xp, level, str, sta;
+    int xp, level, health;
 
     public String getName() {
         return name;
@@ -33,27 +33,18 @@ public class Player implements Serializable{
         this.level = level;
     }
 
-    public int getStr() {
-        return str;
+    public int getHealth() {
+        return health;
     }
 
-    public void setStr(int str) {
-        this.str = str;
-    }
-
-    public int getSta() {
-        return sta;
-    }
-
-    public void setSta(int sta) {
-        this.sta = sta;
+    public void setHealth(int health) {
+        this.health = health;
     }
 
     public void initPlayer() {
         setName("Marko");
         setLevel(1);
-        setSta(1);
-        setStr(1);
         setXp(0);
+        setHealth(100);
     }
 }

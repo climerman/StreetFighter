@@ -72,7 +72,7 @@ public class GameGUI extends JFrame {
         nameLabel.setText(player.getName());
         levelLabel.setText(Integer.toString(player.getLevel()));
         xpLabel.setText(Integer.toString(player.getXp()));
-        healthLabel.setText(Integer.toString(Game.playerHealth));
+        healthLabel.setText(Integer.toString(Game.player.getHealth()));
 
         opNameLabel.setText(Game.name);
         opHealthLabel.setText(Integer.toString(Game.opHealth));
