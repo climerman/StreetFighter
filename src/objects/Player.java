@@ -1,9 +1,11 @@
 package objects;
 
+import java.io.Serializable;
+
 /**
  * Created by Marko on 18.12.2014.
  */
-public class Player {
+public class Player implements Serializable{
     String name;
     int[] stats = new int[3];
     int xp;

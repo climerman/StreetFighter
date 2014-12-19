@@ -11,7 +11,7 @@ public class Game {
     public Player player = new Player();
     public static String name = "Opponent" ;
     public static int basedmg;
-    public static int health,playerHealth;
+    public static int opHealth,playerHealth;
 
     public Game() {
         player.setName("Marko");
@@ -26,13 +26,13 @@ public class Game {
 
     public static void attackAction() {
         playerHealth = playerHealth-basedmg;
-        health = health-10;
+        opHealth = opHealth -10;
     }
 
     private static void generateOpponent() {
         String[] namelist = {"Virgo","Rünno","Mart","Jaanus","Vallo"};
         basedmg = randomInteger(10,25);
-        health = randomInteger(100,200);
+        opHealth = randomInteger(100,200);
         name = namelist[randomInteger(0,namelist.length-1)];
     }
 
