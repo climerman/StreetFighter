@@ -3,30 +3,37 @@ package engine;
 import gui.GameGUI;
 import objects.Player;
 
+import static engine.SaveSys.loadPlayer;
+import static engine.SaveSys.savePlayer;
+
 /**
  * Created by Marko on 18.12.2014.
  */
 public class Game {
 
-    public Player player = new Player();
+    public static Player player = new Player();
     public static String name = "Opponent" ;
     public static int basedmg;
     public static int opHealth,playerHealth;
 
     public Game() {
-        player.setName("Marko");
-        int[] stats = {1,1,1,1};
-        player.setStats(stats);
-        player.setXP(0);
-        playerHealth = player.getStats()[1]*10+100;
+        loadAction();
         generateOpponent();
-
         GameGUI gui = new GameGUI(player);
     }
 
     public static void attackAction() {
         playerHealth = playerHealth-basedmg;
         opHealth = opHealth -10;
+        player.setXP(player.getXP()+2);
+    }
+
+    public static void saveAction() {
+        savePlayer(player);
+    }
+
+    public static void loadAction() {
+        player = loadPlayer();
     }
 
     private static void generateOpponent() {

@@ -21,6 +21,7 @@ public class GameGUI extends JFrame {
     private JLabel opNameLabel;
     private JLabel opHealthLabel;
     private JButton newButton;
+    private JButton exitButton;
 
 
     public GameGUI(final Player player) {
@@ -35,6 +36,16 @@ public class GameGUI extends JFrame {
                 reloadContent(player);
             }
         });
+
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Game.saveAction();
+                dispose();
+            }
+        });
+
+
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
